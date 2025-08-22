@@ -1,0 +1,25 @@
+﻿{
+  "schemaVersion": "0.1.0",
+  "name": "Medium – Concise Summary",
+  "behavior": "create",
+  "noteNameFormat": "{{title|safe_name}}",
+  "path": "Clips/Articles/Medium",
+  "context": "{{content}}",
+  "properties": [
+    { "name": "Title", "value": "{{title}}", "type": "text" },
+    { "name": "Source", "value": "{{url}}", "type": "text" },
+    { "name": "Site", "value": "{{site}}", "type": "text" },
+    { "name": "Author", "value": "{{author|wikilink}}", "type": "text" },
+    { "name": "Published", "value": "{{published|date:\"YYYY-MM-DD\"}}", "type": "date" },
+    { "name": "Created", "value": "{{date|date:\"YYYY-MM-DD\"}}", "type": "date" },
+    { "name": "Words", "value": "{{words}}", "type": "number" },
+    { "name": "Reading time (min)", "value": "{{words|calc:\"/238\"|round}}", "type": "number" },
+    { "name": "Tags", "value": "medium, summary", "type": "text" }
+  ],
+  "triggers": [
+    "https://medium.com/",
+    "/^https?:\\/\\/([a-z0-9-]+\\.)?medium\\.com\\//",
+    "schema:@Article"
+  ],
+  "noteContentFormat": "# {{title}}\n\n## Summary\n{{\"Respond ONLY with JSON per the system message. Use key prompt_1 for this value. Based solely on the provided context, write an information-dense summary in 120–200 words: core problem/thesis, key arguments/steps, notable evidence/examples, main takeaway. If context is insufficient, return 'insufficient context'. No intro or conclusion phrases. Do not include surrounding quotes.\"|replace:\"/^'|'$/g\":\"\"}}\n\n## Key points\n{{\"Respond ONLY with JSON per the system message. Use key prompt_2 for this value. Based solely on the provided context, return 35 bullet points as a Markdown list, each on its own line, prefixed with '- ', 612 words, non-overlapping. Do not include surrounding quotes.\"|replace:\"/^'|'$/g\":\"\"|replace:\"/\\\\s*-\\\\s/g\":\"\\n- \"}}\n"
+}
