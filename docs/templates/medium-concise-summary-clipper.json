@@ -1,6 +1,6 @@
 ﻿{
   "schemaVersion": "0.1.0",
-  "name": "Medium  Concise Summary",
+  "name": "Medium – Concise Summary",
   "behavior": "create",
   "noteNameFormat": "{{title|safe_name}}",
   "path": "Clips/Articles/Medium",
@@ -14,12 +14,12 @@
     { "name": "Created", "value": "{{date|date:\"YYYY-MM-DD\"}}", "type": "date" },
     { "name": "Words", "value": "{{words}}", "type": "number" },
     { "name": "Reading time (min)", "value": "{{words|calc:\"/238\"|round}}", "type": "number" },
-    { "name": "Tags", "value": "medium, summary", "type": "text" }
+    { "name": "Tags", "value": "{{selector:article a[href^=\"/tag/\"]|unique|join:\", \"|replace:\"/^/\":\"medium, summary, \"|replace:\"/,\\s*$/\":\"\"}}", "type": "text" }
   ],
   "triggers": [
     "https://medium.com/",
     "/^https?:\\/\\/([a-z0-9-]+\\.)?medium\\.com\\//",
     "schema:@Article"
   ],
-  "noteContentFormat": "# {{title}}\n\n## Summary\n{{\"Respond ONLY with JSON per the system message. Use key prompt_1 for this value. Based solely on the provided context, write an information-dense summary in 120200 words: core problem/thesis, key arguments/steps, notable evidence/examples, main takeaway. No intro/conclusion phrases. Output Markdown only (no HTML tags), no code blocks, ASCII characters only. Do not include surrounding quotes.\"|replace:\"/^'|'$/g\":\"\"|strip_tags:\"p,div,span,code,pre\"|replace:\"/[^\\x00-\\x7F]/g\":\"\"}}\n\n## Key points\n{{\"Respond ONLY with JSON per the system message. Use key prompt_2 for this value. Based solely on the provided context, return 35 bullet points as a Markdown list, each on its own line, prefixed exactly with '- ', 612 words, non-overlapping. No HTML, ASCII only, no trailing periods.\"|replace:\"/^'|'$/g\":\"\"|strip_tags:\"p,div,span,ul,ol,li\"|replace:\"/^\\*\\s/gm\":\"- \"|replace:\"/\\s*\\s*/g\":\"\\n- \"|replace:\"/\\s*-\\s/g\":\"\\n- \"|replace:\"/[^\\x00-\\x7F]/g\":\"\"}}\n"
+  "noteContentFormat": "# {{title}}\n\n## Summary\n{{\"Respond ONLY with JSON per the system message. Use key prompt_1 for this value. Based solely on the provided context, write an information-dense summary in 120200 words: core problem/thesis, key arguments/steps, notable evidence/examples, main takeaway. No intro/conclusion phrases. Output Markdown only (no HTML tags), no code blocks, ASCII characters only. Do not include surrounding quotes.\"|replace:\"/^'|'$/g\":\"\"|strip_tags:\"p,div,span,code,pre\"|replace:\"/[^\\x00-\\x7F]/g\":\"\"}}\n\n## Key points\n{{\"Respond ONLY with JSON per the system message. Use key prompt_2 for this value. Based solely on the provided context, return 35 bullet points as a Markdown list, each on its own line, prefixed exactly with '- ', 612 words, non-overlapping. No HTML, ASCII only, no trailing periods.\"|replace:\"/^'|'$/g\":\"\"|strip_tags:\"p,div,span,ul,ol,li\"|replace:\"/^\\*\\s/gm\":\"- \"|replace:\"/\\s*\\s*/g\":\"\\n- \"|replace:\"/\\s*-\\s/g\":\"\\n- \"|replace:\"/[\\.;:!\\?]+$/gm\":\"\"|replace:\"/^-\\s*$/gm\":\"\"|replace:\"/[^\\x00-\\x7F]/g\":\"\"}}\n"
 }
