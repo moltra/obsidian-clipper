@@ -14,7 +14,7 @@
     { "name": "Created", "value": "{{date|date:\"YYYY-MM-DD\"}}", "type": "date" },
     { "name": "Words", "value": "{{words}}", "type": "number" },
     { "name": "Reading time (min)", "value": "{{words|calc:\"/238\"|round}}", "type": "number" },
-    { "name": "tags", "value": "{{selector:meta[property=\"article:tag\"]?content, meta[name=\"article:tag\"]?content, meta[name=\"parsely-tags\"]?content, meta[name=\"keywords\"]?content, meta[name=\"news_keywords\"]?content, a[href^=\"/tag/\"]?href, a[href*=\"/tag/\"]?href, a[href^=\"https://medium.com/tag/\"]?href, a[rel=\"tag\"], a[aria-label^=\"Tag:\"]?aria-label|join:\"\\n\"|replace:\"/\\s*,\\s*/g\":\"\\n\"|split:\"\\n\"|map:item => (item||'').split('?')[0].split('#')[0].split('/').pop()|map:item => item && item.toLowerCase().replace(/^tag\\s*:/,'').trim().replace(/[^a-z0-9_\\-\\s]/g,'').replace(/[\\s-]+/g,'_').replace(/_{2,}/g,'_').replace(/^_+|_+$/g,'')|unique|reverse|merge:(\"summary\",\"medium\")|reverse|unique}}", "type": "multitext" }
+    { "name": "tags", "value": "{{selector:a[href^="/tag/"] > div|replace:(" ":"-")}}", "type": "multitext" }
   ],
   "triggers": [
     "https://medium.com/",
